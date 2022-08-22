@@ -1,14 +1,14 @@
 import { Box } from '@chakra-ui/react';
-import Header from './Components/Header';
-import Sidebar from './Components/Sidebar';
+import Header from './Components/main/Header';
+import Sidebar from './Components/main/Sidebar';
 
 function App() {
 	return (
-		<Box mx={4} mt={4}>
+		<Box>
 
 			<Header />
 
-			<Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} >
+			<Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} zIndex='200'>
 
 				<Box w='20%'>
 					<Sidebar />
@@ -22,7 +22,7 @@ function App() {
 			</Box>
 
 
-		</Box>
+		</Box >
 
 	);
 }
