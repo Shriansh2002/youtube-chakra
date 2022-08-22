@@ -1,4 +1,4 @@
-import { Avatar, Box, Divider, Icon, Image, Input, Text } from '@chakra-ui/react';
+import { Avatar, Box, Icon, Image, Input, Text } from '@chakra-ui/react';
 import React from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { HiOutlineMicrophone } from 'react-icons/hi';
@@ -33,7 +33,7 @@ const Header = () => {
             </Box>
 
 
-            <Box w='90%' ml='6' mt='5'>
+            <Box w='90%' ml='6'>
                 <Box display={'flex'} alignItems='center' >
                     <Box w='80%' display={'flex'} alignItems='center'>
                         <Icon as={HiOutlineMicrophone} boxSize="5" opacity='0.5' />
@@ -51,7 +51,7 @@ const Header = () => {
                     </Box>
                 </Box>
 
-                <Divider mt='5' />
+                {/* <Divider mt='5' /> */}
             </Box>
         </Box >
 

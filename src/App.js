@@ -1,5 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import Header from './Components/main/Header';
+import Main from './Components/main/Main';
 import Sidebar from './Components/main/Sidebar';
 
 function App() {
@@ -8,22 +9,19 @@ function App() {
 
 			<Header />
 
-			<Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} zIndex='200'>
+			<Box display={'flex'} flexDir={'row'} zIndex='200'>
 
 				<Box w='20%'>
 					<Sidebar />
 				</Box>
 
 				<Box w='100%'>
-					{/* <Main/> */}
-					Main Content
+					<Main />
 				</Box>
 
 			</Box>
 
-
 		</Box >
-
 	);
 }
 

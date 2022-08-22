@@ -50,6 +50,12 @@ const subscriptionList = [
         streaming: true
     },
     {
+        name: 'Apple',
+        imageUrl: 'https://yt3.ggpht.com/ytc/AMLnZu-WCPytY25vnp0GFcCrTIQ0VAgIs5oqKK2zNgDl5A=s176-c-k-c0x00ffffff-no-rj',
+        newVideo: true,
+        streaming: false
+    },
+    {
         name: 'Google',
         imageUrl: 'https://yt3.ggpht.com/ytc/AMLnZu8MVe0jHIPqgFzsalBgIeO5ev_0tTjEbc_2lv4Vh4o=s176-c-k-c0x00ffffff-no-rj',
         newVideo: true,
@@ -59,7 +65,13 @@ const subscriptionList = [
         name: 'Adobe',
         imageUrl: 'https://yt3.ggpht.com/x6ZLz8y3dF2Mfy1ZqLE4tiJYbQsgDusOr_cTLWYNXyoNiZdvwAlIX9xjKmeGferxaXXYE1YaNSE=s176-c-k-c0x00ffffff-no-rj-mo',
         newVideo: false,
-        streaming: true
+        streaming: false
+    },
+    {
+        name: 'Meta',
+        imageUrl: 'https://yt3.ggpht.com/AAnXC4o1n8BKDsO5l6Uc71rf7WOJjm2-aUHzkvyp9vGYB5F4UtXWTecVzvPOBCFK0bNYsZlD7Hk=s176-c-k-c0x00ffffff-no-rj',
+        newVideo: true,
+        streaming: false
     },
 ];
 
@@ -76,7 +88,7 @@ const youtubeMore = [
 
 const Sidebar = () => {
     return (
-        <Box display={'flex'} flexDirection={'column'} px={5}   >
+        <Box display={'flex'} flexDirection={'column'} px={5} overflow={'auto'} h='90vh'>
             <Box>
                 {listOne.map((item, index) => (
                     <Box key={index} display={'flex'} alignItems={'center'} py={1.5}>
