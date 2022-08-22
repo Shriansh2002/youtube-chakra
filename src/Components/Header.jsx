@@ -27,10 +27,10 @@ const Header = () => {
                 </Box>
 
 
-                <Box w='90%' ml='6'>
-                    <Box display={'flex'} alignItems='center'>
+                <Box w='90%' ml='6' mt='5'>
+                    <Box display={'flex'} alignItems='center' >
                         <Box w='80%' display={'flex'} alignItems='center'>
-                            <Icon as={HiOutlineMicrophone} boxSize="5" />
+                            <Icon as={HiOutlineMicrophone} boxSize="5" opacity='0.5' />
                             <Input ml='2' type='text' placeholder='Type to Search' variant='unstyled' _placeholder={{ opacity: 1, color: 'white' }} />
                         </Box>
 
@@ -45,7 +45,7 @@ const Header = () => {
                         </Box>
                     </Box>
 
-                    <Divider mt='2.5' />
+                    <Divider mt='5' />
                 </Box>
             </Box>
 
