@@ -37,7 +37,7 @@ const MainLeft = () => {
                 height={405}
             />
 
-            <Box display={'flex'} justifyContent={'space-between'}>
+            <Box display={'flex'} justifyContent={'space-between'} width={720}>
                 <Box>
                     <Text py='2' mt='3' size='2xl' fontWeight={'bold'}>{videoData?.name}</Text>
                     <Text py='2' opacity={0.5} fontWeight={'bold'}>{videoData?.views} views</Text>
@@ -55,7 +55,7 @@ const MainLeft = () => {
 
             <Divider mt='2' />
 
-            <Box mt='10' display={'flex'} flexDir={'row'} justifyContent={'space-between'}>
+            <Box mt='10' display={'flex'} flexDir={'row'} justifyContent={'space-between'} width={720}>
                 <Box display={'flex'} flexDir={'row'} gap={4}>
 
                     <Image
@@ -80,8 +80,8 @@ const MainLeft = () => {
                 </Box>
             </Box>
 
-            <Box mt='5' overflowWrap={'break-word'}>
-                
+            <Box mt='5' overflowWrap={'break-word'} width={720}>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, ipsam nam obcaecati id at sequi dolores, vero repudiandae quo consectetur quod accusamus et tempora accusantium illo error a aperiam eveniet?
             </Box>
 
         </Box>

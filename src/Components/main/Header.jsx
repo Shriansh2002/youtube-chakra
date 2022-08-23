@@ -14,6 +14,7 @@ const Header = () => {
             top='0' zIndex='999'
             borderBottom='1px solid #282828'
             px={4} pt={4}
+            background={'white'}
         >
             <Icon as={AiOutlineMenu} boxSize="6" />
 
