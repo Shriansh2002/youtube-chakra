@@ -1,4 +1,4 @@
-import { Avatar, Box, Icon, Image, Input, Text } from '@chakra-ui/react';
+import { Avatar, Box, Icon, Image, Input } from '@chakra-ui/react';
 import React from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { HiOutlineMicrophone } from 'react-icons/hi';
@@ -13,7 +13,7 @@ const Header = () => {
             position='sticky'
             top='0' zIndex='999'
             borderBottom='1px solid #282828'
-            px={4} pt={4}
+            px={4}
             background={'white'}
         >
             <Icon as={AiOutlineMenu} boxSize="6" />
@@ -21,13 +21,11 @@ const Header = () => {
             <Box w='20%' display={'flex'} alignItems={'center'}>
                 <Box display={'flex'} alignItems='center' >
                     <Image
-                        src="https://www.freepnglogos.com/uploads/youtube-logo-hd-8.png"
+                        src="https://static.vecteezy.com/system/resources/previews/003/206/623/original/youtube-editorial-app-icon-free-vector.jpg"
                         alt="youtube logo"
-                        width='100px'
+                        width='150px'
+                        ml={4}
                     />
-                    <Text fontSize='xl' fontWeight='bold' textTransform={'uppercase'}>
-                        Youtube
-                    </Text>
                 </Box>
 
             </Box>

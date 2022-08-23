@@ -1,20 +1,21 @@
-import { Box, Icon, Text } from '@chakra-ui/react';
+import { Box, Icon, Text, useToast } from '@chakra-ui/react';
 import React from 'react';
 import { MdVideoLibrary } from 'react-icons/md';
 import { FiHeart } from 'react-icons/fi';
 
-const operations = [
-    {
-        name: 'Save',
-        icon: MdVideoLibrary
-    }, {
-        name: 'Like',
-        icon: FiHeart,
-        color: 'red.600'
-    }
-];
 
-const Player = ({ videoData }) => {
+const Player = ({ videoData, handleLikedState }) => {
+    const toast = useToast();
+    const localFunctionCalled = () => {
+        handleLikedState();
+        toast({
+            title: videoData.liked ? 'Unliked' : 'Liked',
+            status: videoData.liked ? 'warning' : 'success',
+            position: 'top-right',
+            duration: 1500,
+            isClosable: true,
+        });
+    };
     return (
         <>
             <iframe
@@ -32,12 +33,19 @@ const Player = ({ videoData }) => {
                 </Box>
 
                 <Box display={'flex'}>
-                    {operations.map((item, index) => (
-                        <Box display={'flex'} key={index} justifyContent='center' alignItems={'center'} gap={2} p='2'>
-                            {<Icon as={item.icon} boxSize={5} color={item?.color} />}
-                            <Text color={item?.color}>{item.name}</Text>
-                        </Box>
-                    ))}
+
+                    <Box display={'flex'} justifyContent='center' alignItems={'center'} gap={2} p='2'>
+                        <Icon as={MdVideoLibrary} boxSize={5} />
+                        <Text>Save</Text>
+                    </Box>
+
+                    <Box display={'flex'} justifyContent='center' alignItems={'center'} gap={2} p='2' onClick={() => localFunctionCalled()} cursor='pointer'>
+                        <Icon as={FiHeart} boxSize={5} color={videoData.liked ? 'red.600' : ''} />
+                        <Text color={videoData.liked ? 'red.600' : ''}>
+                            {videoData.liked ? 'Liked' : 'Like'}
+                        </Text>
+                    </Box>
+
                 </Box>
             </Box>
         </>

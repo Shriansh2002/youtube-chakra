@@ -1,9 +1,9 @@
-import { Box, Button, Collapse, Image, Text } from '@chakra-ui/react';
+import { Box, Button, Collapse, Image, Text, useToast } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
-const VideoDetails = ({ videoData }) => {
+const VideoDetails = ({ videoData, handleSubscribedState }) => {
     const [show, setShow] = useState(false);
-    const [subscribed, setSubscribed] = useState(false);
+    const toast = useToast();
 
     const handleToggle = () => setShow(!show);
 
@@ -30,17 +30,28 @@ const VideoDetails = ({ videoData }) => {
                 <Box display={'flex'} flexDir={'column'} justifyContent={'center'}>
                     <Button
                         variant='outline'
-                        color={subscribed ? 'white' : 'red.500'}
-                        backgroundColor={subscribed ? 'gray' : 'white'}
-                        borderColor={subscribed ? 'gray' : 'red.500'}
+                        color={videoData.channel.subscribed ? 'white' : 'red.500'}
+                        backgroundColor={videoData.channel.subscribed ? 'gray' : 'white'}
+                        borderColor={videoData.channel.subscribed ? 'gray' : 'red.500'}
                         _hover={{
-                            color: subscribed ? 'white' : 'red.500',
-                            backgroundColor: subscribed ? 'gray' : 'white',
+                            color: videoData.channel.subscribed ? 'white' : 'red.500',
+                            backgroundColor: videoData.channel.subscribed ? 'gray' : 'white',
                         }}
+                        _active={{ color: videoData.channel.subscribed ? 'white' : 'red.500', }}
                         borderRadius={12}
-                        onClick={() => setSubscribed(!subscribed)}
+                        onClick={() => {
+                            // set show to true
+                            handleSubscribedState();
+                            toast({
+                                title: videoData.channel.subscribed ? 'Unsubscribed' : 'Subscribed',
+                                status: 'info',
+                                position: 'top-right',
+                                duration: 1500,
+                                isClosable: true,
+                            });
+                        }}
                     >
-                        {subscribed ? 'Unsubscribe' : 'Subscribe'}
+                        {videoData.channel.subscribed ? 'Unsubscribe' : 'Subscribe'}
                     </Button>
                 </Box>
             </Box>
