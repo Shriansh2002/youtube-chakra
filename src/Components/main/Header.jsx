@@ -1,10 +1,11 @@
-import { Avatar, Box, Icon, Image, Input } from '@chakra-ui/react';
+import { Avatar, Box, Icon, Image, Input, Menu, MenuButton, MenuList } from '@chakra-ui/react';
 import React from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { HiOutlineMicrophone } from 'react-icons/hi';
 import { CgAddR } from 'react-icons/cg';
 import { AiFillAppstore } from 'react-icons/ai';
 import { BiNotification } from 'react-icons/bi';
+import UserDrawMenu from '../extras/UserDrawMenu';
 
 const Header = () => {
     return (
@@ -52,7 +53,14 @@ const Header = () => {
                     </Box>
 
                     <Box w='10%' display={'flex'} alignItems='center' justifyContent={'center'}>
-                        <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' size='sm' />
+                        <Menu>
+                            <MenuButton>
+                                <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' size='sm' />
+                            </MenuButton>
+                            <MenuList>
+                                <UserDrawMenu />
+                            </MenuList>
+                        </Menu>
                     </Box>
                 </Box>
 
