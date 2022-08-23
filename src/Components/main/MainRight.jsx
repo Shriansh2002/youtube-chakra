@@ -42,10 +42,8 @@ const suggestedVideos = [
 
 const MainRight = () => {
     return (
-        <Box mt='10' display={'flex'} flexDir={'column'} mr={10}>
+        <Box mt='10' display={'flex'} flexDir={'column'} mx={10}>
             <AutoPlayButton />
-
-
 
             {suggestedVideos.map((video, index) => (
                 <CardOne video={video} key={index} />

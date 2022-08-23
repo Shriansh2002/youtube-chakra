@@ -12,15 +12,15 @@ const CardOne = ({ video }) => {
             <Image
                 src={video.imageUrl}
                 alt='Image'
-                width={320}
-                height={180}
+                width={288}
+                height={162}
                 borderRadius='lg'
             />
 
             <Box>
-                <Box fontWeight='semibold' as='h4' mt='2'>
+                <Text fontWeight='semibold' mt='2' fontSize={'md'}>
                     {video.title}
-                </Box>
+                </Text>
 
                 <Box display={'flex'} flexDir='row' mt='2'
                     alignItems='center'
@@ -31,14 +31,14 @@ const CardOne = ({ video }) => {
                     <Box display={'flex'} flexDir='row' alignItems='center'>
                         <Avatar
                             src={video.channel.logoUrl}
-                            boxSize={10}
+                            boxSize={8}
                         />
-                        <Text fontWeight={'bold'} ml='2'>{video.channel.name}</Text>
+                        <Text fontWeight={'bold'} fontSize={'xs'} ml='2'>{video.channel.name}</Text>
                         {video.channel.verified && (
                             <BiCheck color='red' />
                         )}
                     </Box>
-                    <Text fontWeight={'bold'} opacity={0.6} ml='2'>
+                    <Text fontWeight={'bold'} opacity={0.6} ml='2' fontSize={'xs'}>
                         {video.views} Views
                     </Text>
 

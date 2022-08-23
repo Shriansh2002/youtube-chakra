@@ -10,7 +10,7 @@ const Main = () => {
             <Box w='70%'>
                 <MainLeft />
             </Box>
-            <Box w='30%'>
+            <Box>
                 <MainRight />
             </Box>
         </Box >
