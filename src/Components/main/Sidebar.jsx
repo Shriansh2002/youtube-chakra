@@ -113,7 +113,9 @@ const Sidebar = () => {
                     </Box>
                 ))}
 
-                <ShowMore />
+                <Center my='2'>
+                    <Divider />
+                </Center>
 
                 <Text py='2' mt='3' ml='5' textTransform={'uppercase'} fontSize='12px' fontWeight={'bold'} opacity={0.7}>
                     SUBSCRIPTIONS

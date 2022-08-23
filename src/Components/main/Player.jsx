@@ -1,4 +1,4 @@
-import { Box, Icon, Text, useToast } from '@chakra-ui/react';
+import { Box, Icon, Link, Text, useToast } from '@chakra-ui/react';
 import React from 'react';
 import { MdVideoLibrary } from 'react-icons/md';
 import { FiHeart } from 'react-icons/fi';
@@ -28,7 +28,12 @@ const Player = ({ videoData, handleLikedState }) => {
 
             <Box display={'flex'} justifyContent={'space-between'} width={720}>
                 <Box>
-                    <Text py='2' mt='3' size='2xl' fontWeight={'bold'}>{videoData?.name}</Text>
+                    <Text py='2' mt='3' size='sm' fontWeight={'medium'}>
+                        <Link color='blue.500' href='#' textTransform={'uppercase'} size='sm'>
+                            #1 on Trending
+                        </Link>
+                    </Text>
+                    <Text size='2xl' fontWeight={'bold'}>{videoData?.name}</Text>
                     <Text py='2' opacity={0.5} fontWeight={'bold'}>{videoData?.views} views</Text>
                 </Box>
 
