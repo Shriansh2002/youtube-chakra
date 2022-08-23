@@ -88,7 +88,14 @@ const youtubeMore = [
 
 const Sidebar = () => {
     return (
-        <Box display={'flex'} flexDirection={'column'} px={5} overflow={'auto'} h='90vh'>
+        <Box
+            display={'flex'} flexDirection={'column'}
+            px={5}
+            overflow={'auto'}
+            h='90vh'
+            position={'fixed'}
+            width='250px'
+        >
             <Box>
                 {listOne.map((item, index) => (
                     <Box key={index} display={'flex'} alignItems={'center'} py={1.5}>

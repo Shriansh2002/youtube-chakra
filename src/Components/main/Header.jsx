@@ -12,7 +12,6 @@ const Header = () => {
             display={'flex'} justifyContent={'space-between'} alignItems={'center'}
             position='sticky'
             top='0' zIndex='999'
-            backgroundColor={'#1A202C'}
             borderBottom='1px solid #282828'
             px={4} pt={4}
         >
@@ -37,7 +36,14 @@ const Header = () => {
                 <Box display={'flex'} alignItems='center' >
                     <Box w='80%' display={'flex'} alignItems='center'>
                         <Icon as={HiOutlineMicrophone} boxSize="5" opacity='0.5' />
-                        <Input ml='2' type='text' placeholder='Type to Search' variant='unstyled' _placeholder={{ opacity: 1, color: 'white' }} />
+                        <Input
+                            ml='2'
+                            type='text' placeholder='Type to Search'
+                            variant='unstyled'
+                            _placeholder={{
+                                opacity: 0.5, color: '#000'
+                            }}
+                        />
                     </Box>
 
                     <Box w='10%' display={'flex'} alignItems='center' justifyContent={'space-between'}>

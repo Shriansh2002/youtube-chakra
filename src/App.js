@@ -15,7 +15,7 @@ function App() {
 					<Sidebar />
 				</Box>
 
-				<Box w='100%'>
+				<Box w='80%'>
 					<Main />
 				</Box>
 
