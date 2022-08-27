@@ -65,6 +65,8 @@ const ChannelPage = () => {
     const { id } = useParams(); //will store the slugName of the channel
     const [showSearchBar, setShowSearchBar] = useState(false);
 
+    console.log(id);
+
     return (
         <Box>
             <Banner />
@@ -73,7 +75,7 @@ const ChannelPage = () => {
 
             <Box mt='5' px='10' display={'flex'} justifyContent={'space-between'}>
 
-                <Tabs defaultIndex={0} variant={'unstyled'}>
+                <Tabs defaultIndex={0} variant={'unstyled'} w='90%'>
                     <TabList gap={8}>
                         {listOfTabs.map((tab, index) => (
                             <Tab
