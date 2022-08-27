@@ -204,6 +204,8 @@ const ChannelCategories = [
 const HomePanel = ({ data }) => {
     let featured = true; //todo: to get this from the data
 
+    document.title = 'Apple - Home';
+
 
 
     return (
