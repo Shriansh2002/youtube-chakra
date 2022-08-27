@@ -11,14 +11,17 @@ const listOne = [
     {
         name: 'Explore',
         icon: MdExplore,
+        link: ''
     },
     {
         name: 'Trending',
-        icon: AiFillFire
+        icon: AiFillFire,
+        link: 'trending'
     },
     {
         name: 'Subscription',
-        icon: AiFillPlayCircle
+        icon: AiFillPlayCircle,
+        link: 'subscriptions'
     },
 ];
 
@@ -102,20 +105,24 @@ const Sidebar = () => {
         >
             <Box>
                 {listOne.map((item, index) => (
-                    <Box key={index} display={'flex'} alignItems={'center'} py={1.5}>
-                        <Icon as={item.icon} boxSize={5} />
-                        <Text py='2' pl='8'>{item.name}</Text>
-                    </Box>
+                    <Link key={index} href={`/${item.link}`}>
+                        <Box display={'flex'} alignItems={'center'} py={1.5} >
+                            <Icon as={item.icon} boxSize={5} />
+                            <Text py='2' pl='8'>{item.name}</Text>
+                        </Box>
+                    </Link>
                 ))}
                 <Center my='2'>
                     <Divider />
                 </Center>
-                {listTwo.map((item, index) => (
-                    <Box key={index} display={'flex'} alignItems={'center'} py={1.5}>
-                        <Icon as={item.icon} boxSize={5} />
-                        <Text py='2' pl='8'>{item.name}</Text>
-                    </Box>
-                ))}
+                {
+                    listTwo.map((item, index) => (
+                        <Box key={index} display={'flex'} alignItems={'center'} py={1.5}>
+                            <Icon as={item.icon} boxSize={5} />
+                            <Text py='2' pl='8'>{item.name}</Text>
+                        </Box>
+                    ))
+                }
 
                 <Center my='2'>
                     <Divider />
@@ -124,38 +131,42 @@ const Sidebar = () => {
                 <Text py='2' mt='3' ml='5' textTransform={'uppercase'} fontSize='12px' fontWeight={'bold'} opacity={0.7}>
                     SUBSCRIPTIONS
                 </Text>
-                {subscriptionList.map((item, index) => (
-                    <Link key={index} href={`/c/${item.slugName || item.name}`} >
-                        <Box display={'flex'} alignItems={'center'} py={2} justifyContent={'space-between'}>
-                            <Box display={'flex'} alignItems={'center'}>
-                                <Avatar name='Dan Abrahmov' src={item.imageUrl} size='xs' />
-                                <Text py='2' pl='8'>{item.name}</Text>
+                {
+                    subscriptionList.map((item, index) => (
+                        <Link key={index} href={`/user/${item.slugName || item.name}`} >
+                            <Box display={'flex'} alignItems={'center'} py={2} justifyContent={'space-between'}>
+                                <Box display={'flex'} alignItems={'center'}>
+                                    <Avatar name='Dan Abrahmov' src={item.imageUrl} size='xs' />
+                                    <Text py='2' pl='8'>{item.name}</Text>
+                                </Box>
+                                {item.newVideo && (
+                                    <Icon as={BsDot} boxSize={5} color='blue.500' />
+                                )}
+                                {item.streaming && (
+                                    <Icon as={FiRadio} boxSize={5} color='red.500' />
+                                )}
                             </Box>
-                            {item.newVideo && (
-                                <Icon as={BsDot} boxSize={5} color='blue.500' />
-                            )}
-                            {item.streaming && (
-                                <Icon as={FiRadio} boxSize={5} color='red.500' />
-                            )}
-                        </Box>
-                    </Link>
-                ))}
+                        </Link>
+                    ))
+                }
 
                 <ShowMore />
 
                 <Text py='2' mt='3' ml='5' textTransform={'uppercase'} fontSize='12px' fontWeight={'bold'} opacity={0.7}>
                     More From Youtube
                 </Text>
-                {youtubeMore.map((item, index) => (
-                    <Box key={index} display={'flex'} alignItems={'center'} py={2} justifyContent={'space-between'}>
-                        <Box display={'flex'} alignItems={'center'}>
-                            <Icon as={item.icon} boxSize={5} />
-                            <Text py='2' pl='8'>{item.name}</Text>
+                {
+                    youtubeMore.map((item, index) => (
+                        <Box key={index} display={'flex'} alignItems={'center'} py={2} justifyContent={'space-between'}>
+                            <Box display={'flex'} alignItems={'center'}>
+                                <Icon as={item.icon} boxSize={5} />
+                                <Text py='2' pl='8'>{item.name}</Text>
+                            </Box>
                         </Box>
-                    </Box>
-                ))}
+                    ))
+                }
 
-            </Box>
+            </Box >
         </Box >
     );
 };
