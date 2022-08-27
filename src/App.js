@@ -1,27 +1,18 @@
-import { Box } from '@chakra-ui/react';
-import Header from './Components/main/Header';
-import Main from './Components/main/Main';
-import Sidebar from './Components/main/Sidebar';
+// pages
+import Homepage from './pages/Homepage';
+import NotFoundPage from './pages/NotFoundPage';
+import ChannelPage from './pages/ChannelPage';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
 	return (
-		<Box>
-
-			<Header />
-
-			<Box display={'flex'} flexDir={'row'} zIndex='200'>
-
-				<Box w='20%'>
-					<Sidebar />
-				</Box>
-
-				<Box w='80%'>
-					<Main />
-				</Box>
-
-			</Box>
-
-		</Box >
+		<BrowserRouter>
+			<Routes>
+				<Route exact path='/' element={<Homepage />} />
+				<Route path="c/:id" element={<ChannelPage />} />
+				<Route path="*" element={<NotFoundPage />} />
+			</Routes>
+		</BrowserRouter>
 	);
 }
 

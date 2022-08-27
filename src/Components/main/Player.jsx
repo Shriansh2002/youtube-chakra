@@ -18,13 +18,15 @@ const Player = ({ videoData, handleLikedState }) => {
     };
     return (
         <>
-            <iframe
-                src={videoData?.embedLink}
-                title="One Direction - Night Changes - RTL LATE NIGHT"
-                frameBorder="0"
-                width={720}
-                height={405}
-            />
+            <Box borderRadius={18} overflow={'hidden'}>
+                <iframe
+                    src={videoData?.embedLink}
+                    title="One Direction - Night Changes - RTL LATE NIGHT"
+                    frameBorder="0"
+                    width={720}
+                    height={405}
+                />
+            </Box>
 
             <Box display={'flex'} justifyContent={'space-between'} width={720}>
                 <Box>
