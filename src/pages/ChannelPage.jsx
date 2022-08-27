@@ -7,11 +7,10 @@ import { AboutPanel, ChannelsPanel, CommunityPanel, HomePanel, PlayListPanel, Vi
 const Banner = () => (
     <Box>
         <Image
-            src='https://en.ephoto360.com/uploads/worigin/2020/08/07/banneryoutubevalorant_62960.jpg'
+            src='https://yt3.ggpht.com/AMNRhogr32SVOwCPcy6bpUP2pkic1VSwv8yyM7njTXAHh8AqUVFCFICiA3PpAPiQKeL4p-XzJA=w2120-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj'
             alt='Dan Abramov'
             w='100%'
             h='160px'
-            objectFit={'cover'}
         />
     </Box>
 );
@@ -75,7 +74,7 @@ const ChannelPage = () => {
 
             <Box mt='5' px='10' display={'flex'} justifyContent={'space-between'}>
 
-                <Tabs defaultIndex={0} variant={'unstyled'} w='90%'>
+                <Tabs defaultIndex={0} variant={'unstyled'} w='100%'>
                     <TabList gap={8}>
                         {listOfTabs.map((tab, index) => (
                             <Tab

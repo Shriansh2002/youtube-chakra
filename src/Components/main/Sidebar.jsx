@@ -101,7 +101,7 @@ const Sidebar = () => {
             overflow={'auto'}
             h='90vh'
             position={'fixed'}
-            width='250px'
+            width='200px'
         >
             <Box>
                 {listOne.map((item, index) => (
