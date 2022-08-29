@@ -64,8 +64,6 @@ const ChannelPage = () => {
     const { id } = useParams(); //will store the slugName of the channel
     const [showSearchBar, setShowSearchBar] = useState(false);
 
-    console.log(id);
-
     return (
         <Box>
             <Banner />
@@ -123,4 +121,4 @@ const ChannelPage = () => {
     );
 };
 
-export default ChannelPage;;;
+export default ChannelPage;

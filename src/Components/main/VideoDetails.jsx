@@ -63,6 +63,7 @@ const VideoDetails = ({ videoData, handleSubscribedState }) => {
                     onClick={handleToggle}
                     mt={2}
                     opacity={0.5}
+                    w='fit-content'
                     cursor='pointer'
                     fontSize={'xs'}
                     fontWeight={'bold'}

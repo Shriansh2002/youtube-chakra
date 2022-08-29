@@ -1,7 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Divider, Image, Text } from '@chakra-ui/react';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { BiCheck } from 'react-icons/bi';
+// import { BiCheck } from 'react-icons/bi';
+import millify from 'millify';
+import { format } from 'timeago.js';
+import axios from "axios";
+import { useEffect, useState } from 'react';
+
 
 const FeaturedCard = () => {
     return (
@@ -11,27 +17,24 @@ const FeaturedCard = () => {
             <Box display={'flex'} gap={5} mt='4'>
                 <Box>
                     <Image
-                        src='https://i.ytimg.com/vi/q5D55G7Ejs8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC68k0iNM3aPHMMb7IGiuyG7RvsoA'
-                        alt='Dan Abramov'
-                        width={160 * 4.4}
-                        height={90 * 1.5}
+                        src='https://i.ytimg.com/vi/ux6zXguiqxM/maxresdefault.jpg?v=63065d5b'
+                        alt='Apple Event'
+                        width={160 * 3.2}
+                        height={90 * 2.5}
                     />
                 </Box>
 
                 <Box display={'flex'} flexDir={'column'} gap={2}>
                     <Text fontWeight={'bold'}>
-                        WWDC 2022 - June 6 | Apple
+                        Apple Event &mdash; September 7
                     </Text>
-                    <Box display={'flex'} gap={3}>
-                        <Text _hover={{ opacity: 1 }} opacity={0.5}>Apple</Text>
-                        <Text opacity={0.5}>1.2M Views</Text>
-                        <Text opacity={0.5}>5 Days Ago</Text>
-                    </Box>
+                    <Text opacity={0.7} fontSize={12}>
+                        Scheduled for 9/7/22, 10:30 PM
+                    </Text>
                     <Box>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                        Magnam ratione dolores aliquam labore delectus eum non sequi,
-                        incidunt hic eaque animi beatae quod nisi laborum libero veritatis illum.
-                        Soluta possimus aliquam maxime numquam!
+                        Watch the special Apple Event.
+                        September 7, 2022, at 10 a.m. PT.
+                        Set a reminder and we{"’"}ll send you an update before the show.
                     </Box>
                 </Box>
 
@@ -41,30 +44,37 @@ const FeaturedCard = () => {
 };
 
 
-const VideoCard = ({ video }) => {
+const VideoCard = ({ video: { snippet } }) => {
+    const [views, setViews] = useState(0);
+
+    const functionSetViews = async () => {
+        const res = await axios.get(`
+            https://www.googleapis.com/youtube/v3/videos?id=${snippet.resourceId.videoId}&key=${process.env.REACT_APP_GOOGLE_CLOUD_API_KEY}&fields=items(id,statistics)&part=statistics
+        `);
+        setViews(res.data.items[0].statistics.viewCount);
+
+    };
+    functionSetViews();
+
     return (
         <Box
-            maxW='sm'
-            overflow='hidden'
-            my='2.5'
+            py='2.5'
         >
             <Image
-                src={video.imageUrl}
+                src={snippet?.thumbnails?.maxres.url}
                 alt='Image'
-                width={210}
-                height={117}
+                width={160 * 3.2}
             />
 
-            <Box>
-                <Text fontWeight='semibold' mt='2' fontSize={'md'}>
-                    {video.title}
+            <Box display={'flex'} flexDir='column' justifyContent={'space-between'}>
+                <Text fontWeight='semibold' py='2' fontSize={13} h='45px'>
+                    {snippet?.title}
                 </Text>
 
-                <Box display={'flex'} alignItems='center' mt='2'>
-                    <Text fontWeight={'bold'} fontSize={'xs'}>{video.channel.name}</Text>
-                    {video.channel.verified && (
-                        <BiCheck color='red' />
-                    )}
+                <Box display={'flex'} alignItems='center' pt='5'>
+                    <Text fontWeight={'bold'} fontSize={'xs'}>
+                        {snippet?.videoOwnerChannelTitle}
+                    </Text>
                 </Box>
                 <Box
                     display={'flex'}
@@ -75,9 +85,9 @@ const VideoCard = ({ video }) => {
                     fontWeight={'medium'}
                 >
                     <Text>
-                        {video.views} views
+                        {millify(views)} views
                         {' '}·{' '}
-                        {video.date}
+                        {format(snippet?.publishedAt)}
                     </Text>
                 </Box>
             </Box>
@@ -87,124 +97,65 @@ const VideoCard = ({ video }) => {
 };
 
 
-const ChannelCategories = [
-    {
-        title: 'Discover More from our Apple Events',
-        videos: [
-            {
-                title: 'WWDC22 - Inside APple HQ, Day 1',
-                channel: {
-                    name: 'Apple',
-                    logoUrl: 'https://yt3.ggpht.com/ytc/AMLnZu-WCPytY25vnp0GFcCrTIQ0VAgIs5oqKK2zNgDl5A=s176-c-k-c0x00ffffff-no-rj',
-                    verified: true,
-                },
-                imageUrl: 'https://i.ytimg.com/vi/q5D55G7Ejs8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC68k0iNM3aPHMMb7IGiuyG7RvsoA',
-                views: '1.32M',
-                date: '5 Days Ago',
-            }, {
-                title: 'WWDC22 - Inside APple HQ, Day 2',
-                channel: {
-                    name: 'Apple',
-                    logoUrl: 'https://yt3.ggpht.com/ytc/AMLnZu-WCPytY25vnp0GFcCrTIQ0VAgIs5oqKK2zNgDl5A=s176-c-k-c0x00ffffff-no-rj',
-                    verified: true,
-                },
-                imageUrl: 'https://i.ytimg.com/vi/q5D55G7Ejs8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC68k0iNM3aPHMMb7IGiuyG7RvsoA',
-                views: '1.32M',
-                date: '4 Days Ago',
-            }, {
-                title: 'WWDC22 - Inside APple HQ, Day 3',
-                channel: {
-                    name: 'Apple',
-                    logoUrl: 'https://yt3.ggpht.com/ytc/AMLnZu-WCPytY25vnp0GFcCrTIQ0VAgIs5oqKK2zNgDl5A=s176-c-k-c0x00ffffff-no-rj',
-                    verified: true,
-                },
-                imageUrl: 'https://i.ytimg.com/vi/q5D55G7Ejs8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC68k0iNM3aPHMMb7IGiuyG7RvsoA',
-                views: '1.52M',
-                date: '3 Days Ago',
-            }, {
-                title: 'WWDC22 - Inside APple HQ, Day 4',
-                channel: {
-                    name: 'Apple',
-                    logoUrl: 'https://yt3.ggpht.com/ytc/AMLnZu-WCPytY25vnp0GFcCrTIQ0VAgIs5oqKK2zNgDl5A=s176-c-k-c0x00ffffff-no-rj',
-                    verified: true,
-                },
-                imageUrl: 'https://i.ytimg.com/vi/q5D55G7Ejs8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC68k0iNM3aPHMMb7IGiuyG7RvsoA',
-                views: '3.32M',
-                date: '2 Days Ago',
-            }, {
-                title: 'WWDC22 - Inside APple HQ, Day 1',
-                channel: {
-                    name: 'Apple',
-                    logoUrl: 'https://yt3.ggpht.com/ytc/AMLnZu-WCPytY25vnp0GFcCrTIQ0VAgIs5oqKK2zNgDl5A=s176-c-k-c0x00ffffff-no-rj',
-                    verified: true,
-                },
-                imageUrl: 'https://i.ytimg.com/vi/q5D55G7Ejs8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC68k0iNM3aPHMMb7IGiuyG7RvsoA',
-                views: '1.32M',
-                date: '5 Days Ago',
-            }, {
-                title: 'WWDC22 - Inside APple HQ, Day 2',
-                channel: {
-                    name: 'Apple',
-                    logoUrl: 'https://yt3.ggpht.com/ytc/AMLnZu-WCPytY25vnp0GFcCrTIQ0VAgIs5oqKK2zNgDl5A=s176-c-k-c0x00ffffff-no-rj',
-                    verified: true,
-                },
-                imageUrl: 'https://i.ytimg.com/vi/q5D55G7Ejs8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC68k0iNM3aPHMMb7IGiuyG7RvsoA',
-                views: '1.32M',
-                date: '4 Days Ago',
-            }, {
-                title: 'WWDC22 - Inside APple HQ, Day 3',
-                channel: {
-                    name: 'Apple',
-                    logoUrl: 'https://yt3.ggpht.com/ytc/AMLnZu-WCPytY25vnp0GFcCrTIQ0VAgIs5oqKK2zNgDl5A=s176-c-k-c0x00ffffff-no-rj',
-                    verified: true,
-                },
-                imageUrl: 'https://i.ytimg.com/vi/q5D55G7Ejs8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC68k0iNM3aPHMMb7IGiuyG7RvsoA',
-                views: '1.52M',
-                date: '3 Days Ago',
-            }, {
-                title: 'WWDC22 - Inside APple HQ, Day 4',
-                channel: {
-                    name: 'Apple',
-                    logoUrl: 'https://yt3.ggpht.com/ytc/AMLnZu-WCPytY25vnp0GFcCrTIQ0VAgIs5oqKK2zNgDl5A=s176-c-k-c0x00ffffff-no-rj',
-                    verified: true,
-                },
-                imageUrl: 'https://i.ytimg.com/vi/q5D55G7Ejs8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC68k0iNM3aPHMMb7IGiuyG7RvsoA',
-                views: '3.32M',
-                date: '2 Days Ago',
-            },
-        ]
-    },
-    {
-        title: 'Mac', videos: [
-
-        ]
-    },
-    {
-        title: 'iPhone', videos: [
-
-        ]
-    },
-    {
-        title: 'Accessories', videos: [
-
-        ]
-    },
-    {
-        title: 'iPad', videos: [
-
-        ]
-    },
-    {
-        title: 'Apple Music', videos: [
-
-        ]
-    },
-];
-
-const HomePanel = ({ data }) => {
+const HomePanel = () => {
     let featured = true; //todo: to get this from the data
 
-    document.title = 'Apple - Home';
+    document.title = 'Apple - YouTube';
+    const YT_plalist_items_api = process.env.REACT_APP_YT_PLAYLIST_API;
+    const API_key = process.env.REACT_APP_GOOGLE_CLOUD_API_KEY;
+    const PlayListOne = 'PLHFlHpPjgk72Si7r1kLGt1_aD3aJDu092';
+
+    const [playListOne, setPlayListOne] = useState([]);
+
+    useEffect(() => {
+        async function executeIT() {
+            const res = await axios.get(
+                `${YT_plalist_items_api}?part=snippet&playlistId=${PlayListOne}&key=${API_key}&maxResults=50`
+            );
+            setPlayListOne(res.data.items);
+        }
+        executeIT();
+    }, []);
+
+
+    // consoling the object
+    // console.log("Object 1", playListOne);
+
+
+    const ChannelCategories = [
+        {
+            title: 'Discover More from our Apple Events',
+            subtitle: 'Catch up on what was announced at the Apple special event and more.',
+            videos: [
+                playListOne
+            ]
+        },
+        {
+            title: 'Mac', videos: [
+                // playListOne
+            ]
+        },
+        {
+            title: 'iPhone', videos: [
+
+            ]
+        },
+        {
+            title: 'Accessories', videos: [
+
+            ]
+        },
+        {
+            title: 'iPad', videos: [
+
+            ]
+        },
+        {
+            title: 'Apple Music', videos: [
+
+            ]
+        },
+    ];
 
 
 
@@ -215,8 +166,11 @@ const HomePanel = ({ data }) => {
             {ChannelCategories.map((category, index) => (
                 <Box key={index} pt='12'>
                     <Box fontWeight={'semibold'} display='flex' gap={5}>
-                        <Text>{category.title}</Text>
+                        <Text fontSize={20}>{category.title}</Text>
                         <Text opacity={0.5}>▶️ Play</Text>
+                    </Box>
+                    <Box fontWeight={'normal'} display='flex' gap={5}>
+                        <Text opacity={0.7} fontSize={15}>{category?.subtitle}</Text>
                     </Box>
 
 
@@ -226,8 +180,8 @@ const HomePanel = ({ data }) => {
                         slidesPerView={5}
                         navigation
                     >
-                        {category.videos.map((video, index) => (
-                            <SwiperSlide key={index} style={{ listStyle: 'none' }}>
+                        {category?.videos[0]?.map((video, index) => (
+                            <SwiperSlide key={index}>
                                 <VideoCard video={video} />
                             </SwiperSlide>
                         ))}
